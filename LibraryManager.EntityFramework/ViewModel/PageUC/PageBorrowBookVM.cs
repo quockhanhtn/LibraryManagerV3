@@ -1,6 +1,6 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.EntityFramework.View;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -63,7 +63,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             try
             {
-               var w = FrameworkElementExtend.GetRootParent(p) as Window;
+               var w = p.GetRootParent() as Window;
                var gridMain = w.FindName("gridMain") as Grid;
                gridMain.Children.Remove(p);
                var dt = (gridMain.Children[0] as PageBookManager).DataContext as PageBookManagerVM;
@@ -76,7 +76,7 @@ namespace LibraryManager.EntityFramework.ViewModel
          {
             try
             {
-               var w = FrameworkElementExtend.GetRootParent(p) as Window;
+               var w = p.GetRootParent() as Window;
                (w.FindName("gridMain") as Grid).Children.Remove(p);
             }
             catch (Exception) { }

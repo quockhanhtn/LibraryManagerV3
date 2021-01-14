@@ -1,7 +1,7 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl.MyBox;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using MaterialDesignThemes.Wpf;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -61,7 +61,7 @@ namespace LibraryManager.EntityFramework.ViewModel
                var borrowPage = new PageBorrowBook() { DataContext = borrowVM };
                try
                {
-                  var w = FrameworkElementExtend.GetRootParent(p) as Window;
+                  var w = p.GetRootParent() as Window;
                   var gridMain = w.FindName("gridMain") as Grid;
                   //gridMain.Children.Clear();
                   gridMain.Children.Add(borrowPage);
@@ -83,7 +83,7 @@ namespace LibraryManager.EntityFramework.ViewModel
                var returnPage = new PageReturnBook() { DataContext = returnVM };
                try
                {
-                  var w = FrameworkElementExtend.GetRootParent(p) as Window;
+                  var w = p.GetRootParent() as Window;
                   var gridMain = w.FindName("gridMain") as Grid;
                   //gridMain.Children.Clear();
                   gridMain.Children.Add(returnPage);
@@ -161,7 +161,7 @@ namespace LibraryManager.EntityFramework.ViewModel
               try
               {
                  var staticBookPage = new PageStatisticBookBorrow() { DataContext = new PageStatisticBookBorrowVM(BookSelected) };
-                 var w = FrameworkElementExtend.GetRootParent(p) as Window;
+                 var w = p.GetRootParent() as Window;
                  var gridMain = w.FindName("gridMain") as Grid;
                  //gridMain.Children.Clear();
                  gridMain.Children.Add(staticBookPage);

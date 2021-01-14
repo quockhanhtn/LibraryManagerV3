@@ -1,6 +1,6 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.MyUserControl.MyBox;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

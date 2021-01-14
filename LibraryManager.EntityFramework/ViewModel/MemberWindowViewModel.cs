@@ -2,7 +2,7 @@
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl;
 using LibraryManager.MyUserControl.MyBox;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
 using System.Windows.Controls;

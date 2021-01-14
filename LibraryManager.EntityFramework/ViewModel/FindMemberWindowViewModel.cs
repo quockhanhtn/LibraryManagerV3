@@ -1,6 +1,6 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.MyUserControl;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;

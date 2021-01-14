@@ -1,5 +1,5 @@
 ﻿using LibraryManager.EntityFramework.Model;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +23,7 @@ namespace LibraryManager.EntityFramework.ViewModel
          {
             try
             {
-               var w = FrameworkElementExtend.GetRootParent(p) as Window;
+               var w = p.GetRootParent() as Window;
                var gridMain = w.FindName("gridMain") as Grid;
                gridMain.Children.Remove(p);
             }

@@ -1,6 +1,6 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.EntityFramework.View;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -1,4 +1,4 @@
-﻿using LibraryManager.Utility;
+﻿using LibraryManager.Utils;
 
 namespace LibraryManager.EntityFramework.ViewModel
 {

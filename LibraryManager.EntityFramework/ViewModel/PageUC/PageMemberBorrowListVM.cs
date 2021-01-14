@@ -1,5 +1,5 @@
 ﻿using LibraryManager.EntityFramework.Model;
-using LibraryManager.Utility;
+using LibraryManager.Utils;
 using System.Collections.ObjectModel;
 
 namespace LibraryManager.EntityFramework.ViewModel

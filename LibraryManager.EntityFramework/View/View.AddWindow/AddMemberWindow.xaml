@@ -10,18 +10,18 @@
 
         mc:Ignorable="d" x:Name="addMemberWindow"
         Style="{StaticResource ResizeWindowNoBoder}" WindowStartupLocation="CenterScreen"
-        Height="620" Width="400">
+        Height="580" Width="400">
 
    <Border Style="{StaticResource WindowBoder}">
       <Grid>
          <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="65" />
          </Grid.RowDefinitions>
 
          <!--Title-->
-         <uc:TitleBar Tag="Thêm độc giả mới" Height="auto" Background="#007acc" Grid.Row="0"></uc:TitleBar>
+         <uc:TitleBar Tag="Thêm độc giả mới" FontSize="15" Height="30" Background="#007acc" Grid.Row="0"></uc:TitleBar>
 
          <!---Thông tin độc giả-->
          <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

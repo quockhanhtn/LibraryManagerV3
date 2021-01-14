@@ -71,7 +71,7 @@
          </Grid.ColumnDefinitions>
 
          <!--Title-->
-         <uc:TitleBar x:Name="titleBar" Tag="Library Manager - Admin" Height="auto" Background="#007acc" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></uc:TitleBar>
+         <uc:TitleBar x:Name="titleBar" Tag="Library Manager - Admin" FontSize="15" Height="30" Background="#007acc" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></uc:TitleBar>
 
          <Grid x:Name="gridMain" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" />
 

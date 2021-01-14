@@ -1,4 +1,4 @@
-﻿using LibraryManager.Utility;
+﻿using LibraryManager.Utils;
 using System.Data.Entity;
 using System.Linq;
 
