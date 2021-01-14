@@ -1,6 +1,5 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Interfaces;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -103,7 +102,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblPhoneWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToDecimal(txtSalary.Text) == 0)
+            if (txtSalary.Text.ToDecimal() == 0)
             {
                tblSalaryWarning.Visibility = Visibility.Visible;
                txtSalary.Focus();
@@ -122,7 +121,7 @@ namespace LibraryManager.EntityFramework.ViewModel
                Address = txtAddress.Text,
                Email = txtEmail.Text,
                PhoneNumber = txtPhone.Text,
-               Salary = StringHelper.ToDecimal(txtSalary.Text),
+               Salary = txtSalary.Text.ToDecimal(),
                StartDate = DateTime.Now,
                Status = true
             };

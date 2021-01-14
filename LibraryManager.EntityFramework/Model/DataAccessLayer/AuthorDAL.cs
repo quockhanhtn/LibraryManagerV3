@@ -1,6 +1,4 @@
-﻿using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -12,7 +10,14 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class AuthorDAL : IDatabaseAccess<AuthorDTO, int>
    {
-      public static AuthorDAL Instance { get => (instance == null) ? new AuthorDAL() : instance; }
+      public static AuthorDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new AuthorDAL(); }
+            return instance;
+         }
+      }
 
       private AuthorDAL()
       {
@@ -26,22 +31,22 @@ namespace LibraryManager.EntityFramework.Model
          return result;
       }
 
-      public ObservableCollection<AuthorDTO> GetList(StatusFillter fillter = StatusFillter.AllStatus)
+      public ObservableCollection<AuthorDTO> GetList(EStatusFillter fillter = EStatusFillter.AllStatus)
       {
          var listAuthorDTO = new ObservableCollection<AuthorDTO>();
          var listRaw = new List<Author>();
 
          switch (fillter)
          {
-            case StatusFillter.AllStatus:
+            case EStatusFillter.AllStatus:
                listRaw = EFProvider.Instance.Database.Authors.ToList();
                break;
 
-            case StatusFillter.Active:
+            case EStatusFillter.Active:
                listRaw = EFProvider.Instance.Database.Authors.Where(x => x.Status == true).ToList();
                break;
 
-            case StatusFillter.InActive:
+            case EStatusFillter.InActive:
                listRaw = EFProvider.Instance.Database.Authors.Where(x => x.Status == false).ToList();
                break;
 

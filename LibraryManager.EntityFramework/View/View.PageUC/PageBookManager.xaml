@@ -213,7 +213,7 @@
                         Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=pageBookManager}">
                <DockPanel LastChildFill="True" Margin="0" HorizontalAlignment="Stretch">
                   <materialDesign:PackIcon Kind="ArrowTopBoldCircle" />
-                  <TextBlock Text="NHẬP SÁCH" Margin="10 0" />
+                  <TextBlock Text="THÊM SÁCH" Margin="10 0" />
                </DockPanel>
             </Button>
 
@@ -229,7 +229,7 @@
                         Command="{Binding RemoveCommand}">
                <DockPanel LastChildFill="True" Margin="0" HorizontalAlignment="Stretch">
                   <materialDesign:PackIcon Kind="ArrowBottomBoldCircle" />
-                  <TextBlock Text="XUẤT SÁCH" Margin="10 0" />
+                  <TextBlock Text="XÓA SÁCH" Margin="10 0" />
                </DockPanel>
             </Button>
 

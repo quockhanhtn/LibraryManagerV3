@@ -9,7 +9,14 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class AccountDAL
    {
-      public static AccountDAL Instance { get => (instance == null) ? new AccountDAL() : instance; }
+      public static AccountDAL Instance
+      {
+         get
+         {
+            if (instance == null)  { instance = new AccountDAL(); }
+            return instance;
+         }
+      }
 
       private AccountDAL()
       {
@@ -73,6 +80,6 @@ namespace LibraryManager.EntityFramework.Model
          return null;
       }
 
-      private static AccountDAL instance;
+      static AccountDAL instance;
    }
 }

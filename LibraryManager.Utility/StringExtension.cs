@@ -132,5 +132,27 @@ namespace LibraryManager.Utility
             return str;
          }
       }
+
+      /// <summary>
+      /// Chuyển chuỗi thành decimal
+      /// </summary>
+      /// <param name="str">Chuỗi cần chuyển thành decimal</param>
+      /// <returns>0 nếu không chuyển được, giá trị của chuỗi nếu chuyển thành công</returns>
+      public static decimal ToDecimal(this string str)
+      {
+         decimal.TryParse(str, out decimal result);
+         return result < 0 ? 0 : result;
+      }
+
+      /// <summary>
+      /// Chuyển chuỗi thành int
+      /// </summary>
+      /// <param name="str">Chuỗi cần chuyển thành int</param>
+      /// <returns>0 nếu không chuyển được, giá trị của chuỗi nếu chuyển thành công</returns>
+      public static int ToInt(this string str)
+      {
+         int.TryParse(str, out int result);
+         return result < 0 ? 0 : result;
+      }
    }
 }

@@ -1,8 +1,6 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.EntityFramework.View;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,8 +34,8 @@ namespace LibraryManager.EntityFramework.ViewModel
 
       public AddBookWindowVM()
       {
-         ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active);
-         ListPublisher = PublisherDAL.Instance.GetList(StatusFillter.Active);
+         ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active);
+         ListPublisher = PublisherDAL.Instance.GetList(EStatusFillter.Active);
          ListAuthor = AuthorDAL.Instance.GetRawList();
          ListBookAuthor = new ObservableCollection<Author>();
 
@@ -55,7 +53,7 @@ namespace LibraryManager.EntityFramework.ViewModel
 
               if (addDataContext.Result != null)
               {
-                 ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active);
+                 ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active);
                  var cmbBookCategory = p.FindName("cmbBookCategory") as ComboBox;
                  cmbBookCategory.SelectedIndex = ListBookCategory.Count - 1;
               }
@@ -69,7 +67,7 @@ namespace LibraryManager.EntityFramework.ViewModel
 
              if (addDataContext.Result != null)
              {
-                ListPublisher = PublisherDAL.Instance.GetList(StatusFillter.Active);
+                ListPublisher = PublisherDAL.Instance.GetList(EStatusFillter.Active);
                 var cmbPublisher = p.FindName("cmbPublisher") as ComboBox;
                 cmbPublisher.SelectedIndex = ListPublisher.Count - 1;
              }
@@ -144,7 +142,7 @@ namespace LibraryManager.EntityFramework.ViewModel
              }
              else { tblPublisherWarning.Visibility = Visibility.Hidden; }
 
-             if (StringHelper.ToInt(txtYearPublish.Text) < 1900 || StringHelper.ToInt(txtYearPublish.Text) > DateTime.Now.Year)
+             if (txtYearPublish.Text.ToInt() < 1900 || txtYearPublish.Text.ToInt() > DateTime.Now.Year)
              {
                 tblYearPublishWarning.Visibility = Visibility.Visible;
                 txtYearPublish.Focus();
@@ -159,7 +157,7 @@ namespace LibraryManager.EntityFramework.ViewModel
              }
              else { tblAuthorWaning.Visibility = Visibility.Hidden; }
 
-             if (StringHelper.ToInt(txtPageNumber.Text) == 0)
+             if (txtPageNumber.Text.ToInt() == 0)
              {
                 tblPageNumberWarning.Visibility = Visibility.Visible;
                 txtPageNumber.Focus();
@@ -167,7 +165,7 @@ namespace LibraryManager.EntityFramework.ViewModel
              }
              else { tblPageNumberWarning.Visibility = Visibility.Hidden; }
 
-             if (StringHelper.ToDecimal(txtPrice.Text) == 0)
+             if (txtPrice.Text.ToDecimal() == 0)
              {
                 tblPriceWarning.Visibility = Visibility.Visible;
                 txtPrice.Focus();
@@ -175,7 +173,7 @@ namespace LibraryManager.EntityFramework.ViewModel
              }
              else { tblPriceWarning.Visibility = Visibility.Hidden; }
 
-             if (StringHelper.ToInt(txtNumber.Text) == 0)
+             if (txtNumber.Text.ToInt() == 0)
              {
                 tblNumberWarning.Visibility = Visibility.Visible;
                 txtNumber.Focus();
@@ -194,21 +192,21 @@ namespace LibraryManager.EntityFramework.ViewModel
                 Title = txtTitle.Text.CapitalizeEachWord(),
                 BookCategoryId = BookCategorySelected.Id,
                 PublisherId = PublisherSelected.Id,
-                YearPublish = StringHelper.ToInt(txtYearPublish.Text),
-                PageNumber = StringHelper.ToInt(txtPageNumber.Text),
+                YearPublish = txtYearPublish.Text.ToInt(),
+                PageNumber = txtPageNumber.Text.ToInt(),
                 Size = txtSize.Text,
-                Price = StringHelper.ToDecimal(txtPrice.Text),
+                Price = txtPrice.Text.ToDecimal(),
                 Authors = listAuthor
              };
 
-             BookDAL.Instance.Add(newBook, StringHelper.ToInt(txtNumber.Text));
+             BookDAL.Instance.Add(newBook, txtNumber.Text.ToInt());
              Result = newBook;
              p.Close();
           });
 
          RetypeCommand = new RelayCommand<Window>((p) => { return p != null; }, (p) =>
-          {
-          });
+         {
+         });
 
          CancelCommand = new RelayCommand<Window>((p) => { return p != null; }, (p) => { p.Close(); });
       }
@@ -219,8 +217,8 @@ namespace LibraryManager.EntityFramework.ViewModel
       /// <param name="bookUpdate"></param>
       public AddBookWindowVM(BookDTO bookUpdate)
       {
-         ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active);
-         ListPublisher = PublisherDAL.Instance.GetList(StatusFillter.Active);
+         ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active);
+         ListPublisher = PublisherDAL.Instance.GetList(EStatusFillter.Active);
          ListAuthor = AuthorDAL.Instance.GetRawList();
          ListBookAuthor = new ObservableCollection<Author>();
          foreach (var item in bookUpdate.Authors) { ListBookAuthor.Add(item); }
@@ -255,7 +253,7 @@ namespace LibraryManager.EntityFramework.ViewModel
 
             if (addDataContext.Result != null)
             {
-               ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active);
+               ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active);
                var cmbBookCategory = p.FindName("cmbBookCategory") as ComboBox;
                cmbBookCategory.SelectedIndex = ListBookCategory.Count - 1;
             }
@@ -269,7 +267,7 @@ namespace LibraryManager.EntityFramework.ViewModel
 
             if (addDataContext.Result != null)
             {
-               ListPublisher = PublisherDAL.Instance.GetList(StatusFillter.Active);
+               ListPublisher = PublisherDAL.Instance.GetList(EStatusFillter.Active);
                var cmbPublisher = p.FindName("cmbPublisher") as ComboBox;
                cmbPublisher.SelectedIndex = ListPublisher.Count - 1;
             }
@@ -344,7 +342,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblPublisherWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToInt(txtYearPublish.Text) < 1900 || StringHelper.ToInt(txtYearPublish.Text) > DateTime.Now.Year)
+            if (txtYearPublish.Text.ToInt() < 1900 || txtYearPublish.Text.ToInt() > DateTime.Now.Year)
             {
                tblYearPublishWarning.Visibility = Visibility.Visible;
                txtYearPublish.Focus();
@@ -359,7 +357,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblAuthorWaning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToInt(txtPageNumber.Text) == 0)
+            if (txtPageNumber.Text.ToInt() == 0)
             {
                tblPageNumberWarning.Visibility = Visibility.Visible;
                txtPageNumber.Focus();
@@ -367,7 +365,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblPageNumberWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToDecimal(txtPrice.Text) == 0)
+            if (txtPrice.Text.ToDecimal() == 0)
             {
                tblPriceWarning.Visibility = Visibility.Visible;
                txtPrice.Focus();
@@ -375,7 +373,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblPriceWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToInt(txtNumber.Text) == 0)
+            if (txtNumber.Text.ToInt() == 0)
             {
                tblNumberWarning.Visibility = Visibility.Visible;
                txtNumber.Focus();
@@ -392,13 +390,13 @@ namespace LibraryManager.EntityFramework.ViewModel
             bookUpdate.Title = txtTitle.Text.CapitalizeEachWord();
             bookUpdate.BookCategoryId = BookCategorySelected.Id;
             bookUpdate.PublisherId = PublisherSelected.Id;
-            bookUpdate.YearPublish = StringHelper.ToInt(txtYearPublish.Text);
-            bookUpdate.PageNumber = StringHelper.ToInt(txtPageNumber.Text);
+            bookUpdate.YearPublish = txtYearPublish.Text.ToInt();
+            bookUpdate.PageNumber = txtPageNumber.Text.ToInt();
             bookUpdate.Size = txtSize.Text;
-            bookUpdate.Price = StringHelper.ToDecimal(txtPrice.Text);
+            bookUpdate.Price = txtPrice.Text.ToDecimal();
             bookUpdate.Authors = listAuthor;
 
-            BookDAL.Instance.Update(bookUpdate, StringHelper.ToInt(txtNumber.Text));
+            BookDAL.Instance.Update(bookUpdate, txtNumber.Text.ToInt());
             p.Close();
          });
 

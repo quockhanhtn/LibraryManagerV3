@@ -96,6 +96,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\EStatusFillter.cs" />
+    <Compile Include="Interfaces\IAddNewObject.cs" />
+    <Compile Include="Interfaces\ICopyInfo.cs" />
+    <Compile Include="Interfaces\ICopyInfoAndContact.cs" />
+    <Compile Include="Interfaces\IDatabaseAccess.cs" />
+    <Compile Include="Interfaces\IObjectManager.cs" />
     <Compile Include="View\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>

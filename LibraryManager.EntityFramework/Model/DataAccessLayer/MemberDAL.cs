@@ -1,6 +1,4 @@
-﻿using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -13,27 +11,34 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class MemberDAL : IDatabaseAccess<MemberDTO, string>
    {
-      public static MemberDAL Instance { get => (instance == null) ? new MemberDAL() : instance; }
+      public static MemberDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new MemberDAL(); }
+            return instance;
+         }
+      }
 
       private MemberDAL()
       {
       }
 
-      public ObservableCollection<MemberDTO> GetList(StatusFillter fillter = StatusFillter.AllStatus)
+      public ObservableCollection<MemberDTO> GetList(EStatusFillter fillter = EStatusFillter.AllStatus)
       {
          var listMemberDTO = new ObservableCollection<MemberDTO>();
          var listRaw = new List<Member>();
          switch (fillter)
          {
-            case StatusFillter.AllStatus:
+            case EStatusFillter.AllStatus:
                listRaw = EFProvider.Instance.Database.Members.ToList();
                break;
 
-            case StatusFillter.Active:
+            case EStatusFillter.Active:
                listRaw = EFProvider.Instance.Database.Members.Where(x => x.Status == true).ToList();
                break;
 
-            case StatusFillter.InActive:
+            case EStatusFillter.InActive:
                listRaw = EFProvider.Instance.Database.Members.Where(x => x.Status == false).ToList();
                break;
          }
@@ -89,7 +94,7 @@ namespace LibraryManager.EntityFramework.Model
 
          if (memberUpdate != null)
          {
-            memberUpdate.Status = (memberUpdate.Status == true) ? false : true;
+            memberUpdate.Status = memberUpdate.Status != true;
             EFProvider.Instance.SaveEntity(memberUpdate, EntityState.Modified);
          }
       }

@@ -78,12 +78,12 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
          });
 
-         SignUpCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         SignUpCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             MyMessageBox.Show("Comming soon !", "Sorry", "OK", "", MessageBoxImage.Error);
          });
 
-         LostPasswordCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         LostPasswordCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             MyMessageBox.Show("Comming soon !", "Sorry", "OK", "", MessageBoxImage.Error);
          });

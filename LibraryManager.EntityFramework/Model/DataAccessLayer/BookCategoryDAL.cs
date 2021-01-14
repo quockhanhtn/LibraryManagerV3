@@ -1,6 +1,4 @@
-﻿using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -12,28 +10,35 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class BookCategoryDAL : IDatabaseAccess<BookCategoryDTO, int>
    {
-      public static BookCategoryDAL Instance { get => (instance == null) ? new BookCategoryDAL() : instance; }
+      public static BookCategoryDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new BookCategoryDAL(); }
+            return instance;
+         }
+      }
 
       private BookCategoryDAL()
       {
       }
 
-      public ObservableCollection<BookCategoryDTO> GetList(StatusFillter fillter = StatusFillter.AllStatus)
+      public ObservableCollection<BookCategoryDTO> GetList(EStatusFillter fillter = EStatusFillter.AllStatus)
       {
          var listRaw = new List<BookCategory>();
          var listBookCategoryDTO = new ObservableCollection<BookCategoryDTO>();
 
          switch (fillter)
          {
-            case StatusFillter.AllStatus:
+            case EStatusFillter.AllStatus:
                listRaw = EFProvider.Instance.Database.BookCategories.ToList();
                break;
 
-            case StatusFillter.Active:
+            case EStatusFillter.Active:
                listRaw = EFProvider.Instance.Database.BookCategories.Where(x => x.Status == true).ToList();
                break;
 
-            case StatusFillter.InActive:
+            case EStatusFillter.InActive:
                listRaw = EFProvider.Instance.Database.BookCategories.Where(x => x.Status == false).ToList();
                break;
          }
@@ -66,7 +71,7 @@ namespace LibraryManager.EntityFramework.Model
 
          if (bookCategoryUpdate != null)
          {
-            bookCategoryUpdate.Status = (bookCategoryUpdate.Status == true) ? false : true;
+            bookCategoryUpdate.Status = bookCategoryUpdate.Status != true;
             EFProvider.Instance.SaveEntity(bookCategoryUpdate, EntityState.Modified, true);
          }
       }

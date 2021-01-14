@@ -1,6 +1,4 @@
-﻿using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -12,28 +10,35 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class BookDAL : IDatabaseAccess<BookDTO, string>
    {
-      public static BookDAL Instance { get => (instance == null) ? new BookDAL() : instance; }
+      public static BookDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new BookDAL(); }
+            return instance;
+         }
+      }
 
       private BookDAL()
       {
       }
 
-      public ObservableCollection<BookDTO> GetList(StatusFillter fillter = StatusFillter.AllStatus)
+      public ObservableCollection<BookDTO> GetList(EStatusFillter fillter = EStatusFillter.AllStatus)
       {
          var listRaw = new List<Book>();
          var listBookDTO = new ObservableCollection<BookDTO>();
 
          switch (fillter)
          {
-            case StatusFillter.AllStatus:
+            case EStatusFillter.AllStatus:
                listRaw = EFProvider.Instance.Database.Books.ToList();
                break;
 
-            case StatusFillter.Active:
+            case EStatusFillter.Active:
                listRaw = EFProvider.Instance.Database.Books.Where(x => x.Status == true).ToList();
                break;
 
-            case StatusFillter.InActive:
+            case EStatusFillter.InActive:
                listRaw = EFProvider.Instance.Database.Books.Where(x => x.Status == false).ToList();
                break;
          }
@@ -115,7 +120,7 @@ namespace LibraryManager.EntityFramework.Model
 
          if (bookUpdate != null)
          {
-            bookUpdate.Status = (bookUpdate.Status == true) ? false : true;
+            bookUpdate.Status = bookUpdate.Status != true;
             EFProvider.Instance.SaveEntity(bookUpdate, EntityState.Modified);
          }
       }

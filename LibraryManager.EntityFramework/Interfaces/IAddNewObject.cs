@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-
-namespace LibraryManager.Utility.Interfaces
+﻿namespace LibraryManager.EntityFramework
 {
    public interface IAddNewObject<ObjectType>
    {
@@ -11,7 +9,7 @@ namespace LibraryManager.Utility.Interfaces
       /// </summary>
       ObjectType Result { get; set; }
 
-      ICommand OKCommand { get; set; }
-      ICommand CancelCommand { get; set; }
+      System.Windows.Input.ICommand OKCommand { get; set; }
+      System.Windows.Input.ICommand CancelCommand { get; set; }
    }
 }

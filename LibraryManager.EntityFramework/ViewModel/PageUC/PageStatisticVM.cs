@@ -139,22 +139,22 @@ namespace LibraryManager.EntityFramework.ViewModel
             listGrid[tabControl.SelectedIndex].Margin = new Thickness(0, 0, 0, 0);
          });
 
-         ViewBorrowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ViewBorrowCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             ListBookBorrow = BorrowDAL.Instance.GetListByDate(FromDateBorrow, ToDateBorrow);
          });
 
-         ViewReturnCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ViewReturnCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             ListBookReturn = ReturnBookDAL.Instance.GetListByDate(FromDateReturn, ToDateReturn);
          });
 
-         ViewMemberCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ViewMemberCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             ListMember = MemberDAL.Instance.GetList(FromDateMember, ToDateMember);
          });
 
-         ViewLibrarianCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ViewLibrarianCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             ListLibrarian = LibrarianDAL.Instance.GetList(FromDateLibrarian, ToDateLibrarian);
          });

@@ -2,10 +2,7 @@
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl.MyBox;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -77,7 +74,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
          });
 
-         ExportToExcelCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ExportToExcelCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             string filePath = DialogUtils.ShowSaveFileDialog("Xuất danh chuyên mục sách", "Excel | *.xlsx | Excel 2003 | *.xls");
             if (string.IsNullOrEmpty(filePath)) { return; }
@@ -200,7 +197,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblNameWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToInt(txtLimitDays.Text) == 0)
+            if (txtLimitDays.Text.ToInt() == 0)
             {
                tblLimitDaysWarning.Visibility = Visibility.Visible;
                txtLimitDays.Focus();
@@ -209,7 +206,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             else { tblLimitDaysWarning.Visibility = Visibility.Hidden; }
 
             BookCategorySelected.Name = txtName.Text;
-            BookCategorySelected.LimitDays = StringHelper.ToInt(txtLimitDays.Text);
+            BookCategorySelected.LimitDays = txtLimitDays.Text.ToInt();
 
             BookCategoryDAL.Instance.Update(BookCategorySelected);
             var mySnackbar = p.FindName("mySnackbar") as Snackbar;
@@ -239,7 +236,7 @@ namespace LibraryManager.EntityFramework.ViewModel
       private void ReloadList()
       {
          if (isShowDeleteCategory) { ListBookCategory = BookCategoryDAL.Instance.GetList(); }
-         else { ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active); }
+         else { ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active); }
       }
 
       private ObservableCollection<BookCategoryDTO> listBookCategory;

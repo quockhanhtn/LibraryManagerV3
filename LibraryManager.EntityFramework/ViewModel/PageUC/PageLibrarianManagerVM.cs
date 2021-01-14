@@ -2,10 +2,7 @@
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl.MyBox;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -29,7 +26,7 @@ namespace LibraryManager.EntityFramework.ViewModel
       public ICommand UpdateCommand { get; set; }
       public ICommand SendEmailCommand { get; set; }
       public ICommand StatusChangeCommand { get; set; }
-      public int StatusFillter { get => (int)statusFillter; set { statusFillter = (StatusFillter)value; ReloadList(); OnPropertyChanged(); } }
+      public int StatusFillter { get => (int)statusFillter; set { statusFillter = (EStatusFillter)value; ReloadList(); OnPropertyChanged(); } }
       public ICommand DeleteCommand { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
       public ICommand CopyIdCommand { get; set; }
@@ -96,7 +93,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
          });
 
-         ExportToExcelCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ExportToExcelCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             string filePath = DialogUtils.ShowSaveFileDialog("Xuất danh sách thủ thư", "Excel | *.xlsx | Excel 2003 | *.xls");
             if (string.IsNullOrEmpty(filePath)) { return; }
@@ -314,7 +311,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblPhoneWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToDecimal(txtSalary.Text) == 0)
+            if (txtSalary.Text.ToDecimal() == 0)
             {
                tblSalaryWarning.Visibility = Visibility.Visible;
                txtSalary.Focus();
@@ -338,7 +335,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             LibrarianSelected.Address = txtAddress.Text;
             LibrarianSelected.Email = txtEmail.Text;
             LibrarianSelected.PhoneNumber = txtPhone.Text;
-            LibrarianSelected.Salary = StringHelper.ToDecimal(txtSalary.Text);
+            LibrarianSelected.Salary = txtSalary.Text.ToDecimal();
             LibrarianSelected.StartDate = dtpkStartDate.SelectedDate;
 
             LibrarianDAL.Instance.Update(LibrarianSelected);
@@ -371,6 +368,6 @@ namespace LibraryManager.EntityFramework.ViewModel
 
       private ObservableCollection<LibrarianDTO> listLibrarian;
       private LibrarianDTO librarianSelected;
-      private StatusFillter statusFillter = Utility.Enums.StatusFillter.Active;
+      private EStatusFillter statusFillter = EStatusFillter.Active;
    }
 }

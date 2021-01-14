@@ -1,6 +1,5 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Interfaces;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;

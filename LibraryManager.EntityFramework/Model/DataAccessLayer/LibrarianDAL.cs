@@ -1,6 +1,4 @@
-﻿using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -13,28 +11,35 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class LibrarianDAL : IDatabaseAccess<LibrarianDTO, string>
    {
-      public static LibrarianDAL Instance { get => (instance == null) ? new LibrarianDAL() : instance; }
+      public static LibrarianDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new LibrarianDAL(); }
+            return instance;
+         }
+      }
 
       private LibrarianDAL()
       {
       }
 
-      public ObservableCollection<LibrarianDTO> GetList(StatusFillter fillter = StatusFillter.AllStatus)
+      public ObservableCollection<LibrarianDTO> GetList(EStatusFillter fillter = EStatusFillter.AllStatus)
       {
          var listLibrarianDTO = new ObservableCollection<LibrarianDTO>();
          var listRaw = new List<Librarian>();
 
          switch (fillter)
          {
-            case StatusFillter.AllStatus:
+            case EStatusFillter.AllStatus:
                listRaw = EFProvider.Instance.Database.Librarians.Where(x => x.Id != "LIB000").ToList();
                break;
 
-            case StatusFillter.Active:
+            case EStatusFillter.Active:
                listRaw = EFProvider.Instance.Database.Librarians.Where(x => x.Id != "LIB000" && x.Status == true).ToList();
                break;
 
-            case StatusFillter.InActive:
+            case EStatusFillter.InActive:
                listRaw = EFProvider.Instance.Database.Librarians.Where(x => x.Id != "LIB000" && x.Status == false).ToList();
                break;
          }
@@ -97,7 +102,7 @@ namespace LibraryManager.EntityFramework.Model
 
          if (librarianUpdate != null)
          {
-            librarianUpdate.Status = (librarianUpdate.Status == true) ? false : true;
+            librarianUpdate.Status = librarianUpdate.Status != true;
             EFProvider.Instance.SaveEntity(librarianUpdate, EntityState.Modified);
             //DataProvider.Instance.Database.Entry(librarianUpdate).State = EntityState.Modified;
             //DataProvider.Instance.Database.SaveChanges();

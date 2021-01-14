@@ -9,7 +9,14 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class ReturnBookDAL
    {
-      public static ReturnBookDAL Instance { get => (instance == null) ? new ReturnBookDAL() : instance; }
+      public static ReturnBookDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new ReturnBookDAL(); }
+            return instance;
+         }
+      }
 
       private ReturnBookDAL()
       {

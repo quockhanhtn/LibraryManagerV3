@@ -2,10 +2,7 @@
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl.MyBox;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -29,7 +26,7 @@ namespace LibraryManager.EntityFramework.ViewModel
       public ICommand UpdateCommand { get; set; }
       public ICommand SendEmailCommand { get; set; }
       public ICommand StatusChangeCommand { get; set; }
-      public int StatusFillter { get => (int)statusFillter; set { statusFillter = (StatusFillter)value; ReloadList(); OnPropertyChanged(); } }
+      public int StatusFillter { get => (int)statusFillter; set { statusFillter = (EStatusFillter)value; ReloadList(); OnPropertyChanged(); } }
       public ICommand DeleteCommand { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
       public ICommand CopyIdCommand { get; set; }
       public ICommand CopyNameCommand { get; set; }
@@ -89,7 +86,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
          });
 
-         ExportToExcelCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ExportToExcelCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             string filePath = DialogUtils.ShowSaveFileDialog("Xuất danh sách độc giả", "Excel | *.xlsx | Excel 2003 | *.xls");
             if (string.IsNullOrEmpty(filePath)) { return; }
@@ -326,24 +323,21 @@ namespace LibraryManager.EntityFramework.ViewModel
             ReloadList();
          });
 
-         SendEmailCommand = new RelayCommand<object>((p) => { return MemberSelected != null && MemberSelected.Email != null; }, (p) =>
-         {
-            WebHelper.SendEmail(MemberSelected.Email);
-         });
+         SendEmailCommand = new RelayCommand<object>((p) => MemberSelected != null && MemberSelected.Email != null, (p) => WebHelper.SendEmail(MemberSelected.Email));
 
-         StatusChangeCommand = new RelayCommand<object>((p) => { return MemberSelected != null; }, (p) =>
+         StatusChangeCommand = new RelayCommand<object>((p) => MemberSelected != null, (p) =>
          {
             MemberDAL.Instance.ChangeStatus(MemberSelected.Id);
             ReloadList();
          });
 
-         CopyIdCommand = new RelayCommand<object>((p) => { return MemberSelected != null; }, (p) => { Clipboard.SetText(MemberSelected.Id); });
+         CopyIdCommand = new RelayCommand<object>((p) => MemberSelected != null, (p) => Clipboard.SetText(MemberSelected.Id));
 
-         CopyNameCommand = new RelayCommand<object>((p) => { return MemberSelected != null; }, (p) => { Clipboard.SetText(MemberSelected.FullName); });
+         CopyNameCommand = new RelayCommand<object>((p) => MemberSelected != null, (p) => Clipboard.SetText(MemberSelected.FullName));
 
-         CopyPhoneNumberCommand = new RelayCommand<object>((p) => { return MemberSelected != null; }, (p) => { Clipboard.SetText(MemberSelected.PhoneNumber); });
+         CopyPhoneNumberCommand = new RelayCommand<object>((p) => MemberSelected != null, (p) => Clipboard.SetText(MemberSelected.PhoneNumber));
 
-         CopyAddressCommand = new RelayCommand<object>((p) => { return MemberSelected != null; }, (p) => { Clipboard.SetText(MemberSelected.Address); });
+         CopyAddressCommand = new RelayCommand<object>((p) => MemberSelected != null, (p) => Clipboard.SetText(MemberSelected.Address));
       }
 
       private void ReloadList()
@@ -353,6 +347,6 @@ namespace LibraryManager.EntityFramework.ViewModel
 
       private ObservableCollection<MemberDTO> listMember;
       private MemberDTO memberSelected;
-      private StatusFillter statusFillter = Utility.Enums.StatusFillter.Active;
+      private EStatusFillter statusFillter = EStatusFillter.Active;
    }
 }

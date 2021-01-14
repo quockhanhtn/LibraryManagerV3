@@ -1,32 +1,30 @@
-﻿using System.Windows.Input;
-
-namespace LibraryManager.Utility.Interfaces
+﻿namespace LibraryManager.EntityFramework
 {
    public interface IObjectManager
    {
       /// <summary>
       /// Thay đổi object được chọn trên listview
       /// </summary>
-      ICommand ObjectSelectedChangedCommand { get; set; }
+      System.Windows.Input.ICommand ObjectSelectedChangedCommand { get; set; }
 
       /// <summary>
       /// Thêm đối tượng mới
       /// </summary>
-      ICommand AddCommand { get; set; }
+      System.Windows.Input.ICommand AddCommand { get; set; }
 
       /// <summary>
       /// Cập nhật thông tin đối tượng
       /// </summary>
-      ICommand UpdateCommand { get; set; }
+      System.Windows.Input.ICommand UpdateCommand { get; set; }
 
       /// <summary>
       /// Thay đổi trạng thái (status) của đối tượng
       /// </summary>
-      ICommand StatusChangeCommand { get; set; }
+      System.Windows.Input.ICommand StatusChangeCommand { get; set; }
 
       /// <summary>
       /// Xóa đối tượng
       /// </summary>
-      ICommand DeleteCommand { get; set; }
+      System.Windows.Input.ICommand DeleteCommand { get; set; }
    }
 }

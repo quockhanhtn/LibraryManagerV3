@@ -15,7 +15,7 @@ namespace LibraryManager.EntityFramework.Model
       }
 
       public int NumberOfBook { get => Books.Count; }
-      public string Note { get { return (this.Status != true) ? "Đã ẩn" : ""; } }
+      public string Note { get => (this.Status != true) ? "Đã ẩn" : ""; }
 
       public AuthorDTO() : base()
       {

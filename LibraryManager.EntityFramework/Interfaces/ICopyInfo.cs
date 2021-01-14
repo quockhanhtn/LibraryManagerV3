@@ -1,4 +1,4 @@
-﻿namespace LibraryManager.Utility.Interfaces
+﻿namespace LibraryManager.EntityFramework
 {
    public interface ICopyInfo
    {

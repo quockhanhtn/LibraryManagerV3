@@ -52,7 +52,7 @@ namespace LibraryManager.EntityFramework.ViewModel
 
          OKCommand = new RelayCommand<Window>((p) =>
          {
-            return (MemberSelected == null) ? false : (MemberAction == BookAction.Return || MemberSelected.Status == true) ? true : false;
+            return MemberSelected != null && ((MemberAction == BookAction.Return || MemberSelected.Status == true));
          }, (p) => { p.Close(); });
 
          CancelCommand = new RelayCommand<Window>((p) => { return p != null; }, (p) => { MemberSelected = null; p.Close(); });

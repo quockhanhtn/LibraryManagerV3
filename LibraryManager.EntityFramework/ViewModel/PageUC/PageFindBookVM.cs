@@ -1,6 +1,5 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Enums;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -29,9 +28,9 @@ namespace LibraryManager.EntityFramework.ViewModel
 
       public PageFindBookVM()
       {
-         ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active);
+         ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active);
          ListBookCategory.Add(new BookCategoryDTO() { Id = 0, Name = "Tất cả chuyên mục" });
-         ListPublisher = PublisherDAL.Instance.GetList(StatusFillter.Active);
+         ListPublisher = PublisherDAL.Instance.GetList(EStatusFillter.Active);
          ListPublisher.Add(new PublisherDTO() { Id = 0, Name = "Tất cả NXB" });
          ReloadList();
 

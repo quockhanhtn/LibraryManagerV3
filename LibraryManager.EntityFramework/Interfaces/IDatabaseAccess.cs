@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace LibraryManager.Utility.Interfaces
+namespace LibraryManager.EntityFramework
 {
    /// <summary>
    /// Lấy dữ liệu từ database và chuyển sang DTO
@@ -14,7 +14,7 @@ namespace LibraryManager.Utility.Interfaces
       /// </summary>
       /// <param name="fillter"></param>
       /// <returns></returns>
-      ObservableCollection<ObjectDTO> GetList(Enums.StatusFillter fillter = Enums.StatusFillter.AllStatus);
+      ObservableCollection<ObjectDTO> GetList(EStatusFillter fillter = EStatusFillter.AllStatus);
 
       /// <summary>
       /// Thêm "newObject" vào database

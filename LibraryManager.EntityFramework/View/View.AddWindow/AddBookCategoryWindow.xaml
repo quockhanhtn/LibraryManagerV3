@@ -3,10 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LibraryManager.EntityFramework.View"
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:uc="clr-namespace:LibraryManager.MyUserControl;assembly=LibraryManager.MyUserControl"
 
         Title="Thêm chuyên mục mới - Library Manager" Icon="{StaticResource LibraryIcon}"
@@ -41,7 +39,7 @@
 
                     <!---Tên-->
                     <TextBox materialDesign:HintAssist.Hint="Số ngày cho mượn" x:Name="txtLimitDays" MaxLength="5"
-                                 Text="{Binding BookCategorySelected.LimitDays, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                             Text="{Binding BookCategorySelected.LimitDays, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
                     <TextBlock Text="Vui lòng nhập số nguyên dương" x:Name="tblLimitDaysWarning" />
                 </StackPanel>
             </ScrollViewer>

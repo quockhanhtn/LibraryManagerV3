@@ -4,9 +4,9 @@ namespace LibraryManager.EntityFramework.Model
 {
    public class BorrowDTO : Borrow
    {
-      public DateTime TermDate { get { return this.BorrowDate.AddDays((double)this.Book.BookCategory.LimitDays); } }
-      public string LibrarianName { get { return this.Librarian.LastName + " " + this.Librarian.FirstName; } }
-      public string MemberName { get { return this.Member.LastName + " " + this.Member.FirstName; } }
+      public DateTime TermDate { get  => this.BorrowDate.AddDays((double)this.Book.BookCategory.LimitDays); } 
+      public string LibrarianName { get => this.Librarian.LastName + " " + this.Librarian.FirstName; } 
+      public string MemberName { get => this.Member.LastName + " " + this.Member.FirstName; } 
 
       public BorrowDTO() : base()
       {

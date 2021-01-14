@@ -2,9 +2,9 @@
 {
    public class ReturnDTO : ReturnBook
    {
-      public string LibrarianBorrow { get { return this.Borrow.Librarian.LastName + " " + this.Borrow.Librarian.FirstName; } }
-      public string LibrarianReturn { get { return this.Librarian.LastName + " " + this.Librarian.FirstName; } }
-      public string MemberName { get { return this.Borrow.Member.LastName + " " + this.Borrow.Member.FirstName; } }
+      public string LibrarianBorrow { get => (this.Borrow.Librarian.LastName + " " + this.Borrow.Librarian.FirstName).Trim(); } 
+      public string LibrarianReturn { get => (this.Librarian.LastName + " " + this.Librarian.FirstName).Trim(); } 
+      public string MemberName { get => (this.Borrow.Member.LastName + " " + this.Borrow.Member.FirstName).Trim(); } 
 
       public ReturnDTO() : base()
       {

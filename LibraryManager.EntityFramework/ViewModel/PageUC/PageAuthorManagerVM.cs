@@ -2,9 +2,7 @@
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl.MyBox;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Interfaces;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -77,7 +75,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
          });
 
-         ExportToExcelCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ExportToExcelCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             string filePath = DialogUtils.ShowSaveFileDialog("Xuất danh sách tác giả", "Excel | *.xlsx | Excel 2003 | *.xls");
             if (string.IsNullOrEmpty(filePath)) { return; }
@@ -225,7 +223,7 @@ namespace LibraryManager.EntityFramework.ViewModel
       private void ReloadList()
       {
          if (isShowHiddenAuthor) { ListAuthor = AuthorDAL.Instance.GetList(); }
-         else { ListAuthor = AuthorDAL.Instance.GetList(Utility.Enums.StatusFillter.Active); }
+         else { ListAuthor = AuthorDAL.Instance.GetList(EStatusFillter.Active); }
       }
 
       private ObservableCollection<AuthorDTO> listAuthor;

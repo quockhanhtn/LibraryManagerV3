@@ -1,9 +1,9 @@
-﻿namespace LibraryManager.Utility.Enums
+﻿namespace LibraryManager.EntityFramework
 {
    /// <summary>
    /// Trạng thái khi lấy dữ liệu từ Database
    /// </summary>
-   public enum StatusFillter
+   public enum EStatusFillter
    {
       /// <summary>
       /// Tất cả trạng thái

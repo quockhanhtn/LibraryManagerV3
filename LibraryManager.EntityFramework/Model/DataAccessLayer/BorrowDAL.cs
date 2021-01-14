@@ -10,7 +10,14 @@ namespace LibraryManager.EntityFramework.Model
    /// </summary>
    public class BorrowDAL
    {
-      public static BorrowDAL Instance { get => (instance == null) ? new BorrowDAL() : instance; }
+      public static BorrowDAL Instance
+      {
+         get
+         {
+            if (instance == null) { instance = new BorrowDAL(); }
+            return instance;
+         }
+      }
 
       private BorrowDAL()
       {

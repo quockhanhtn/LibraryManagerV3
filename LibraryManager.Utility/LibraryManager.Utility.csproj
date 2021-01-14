@@ -60,14 +60,8 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="BitmapExtension.cs" />
     <Compile Include="DialogUtils.cs" />
-    <Compile Include="Enums\StatusFillter.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="FrameworkElementExtend.cs" />
-    <Compile Include="Interfaces\ICopyInfoAndContact.cs" />
-    <Compile Include="Interfaces\IAddNewObject.cs" />
-    <Compile Include="Interfaces\ICopyInfo.cs" />
-    <Compile Include="Interfaces\IDatabaseAccess.cs" />
-    <Compile Include="Interfaces\IObjectManager.cs" />
     <Compile Include="PasswordEncoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtension.cs" />

@@ -4,8 +4,8 @@ namespace LibraryManager.EntityFramework.Model
 {
    public class LibrarianDTO : Librarian
    {
-      public string FullName { get { return this.LastName + " " + this.FirstName; } }
-      public string Note { get { return (this.Status == true) ? "Đang làm" : "Đã nghỉ"; } }
+      public string FullName { get => (this.LastName + " " + this.FirstName).Trim(); } 
+      public string Note { get => (this.Status == true) ? "Đang làm" : "Đã nghỉ"; } 
 
       public LibrarianDTO() : base()
       {

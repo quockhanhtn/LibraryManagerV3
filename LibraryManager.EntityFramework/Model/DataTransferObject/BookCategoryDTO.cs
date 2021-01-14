@@ -2,7 +2,7 @@
 {
    public class BookCategoryDTO : BookCategory
    {
-      public string Note { get { return (this.Status != true) ? "Đã ẩn" : ""; } }
+      public string Note { get => (this.Status != true) ? "Đã ẩn" : ""; }
       public int NumberOfBook { get => Books.Count; }
 
       public BookCategoryDTO() : base()

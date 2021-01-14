@@ -1,6 +1,5 @@
 ﻿using LibraryManager.EntityFramework.Model;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Interfaces;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -31,7 +30,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             }
             else { tblNameWarning.Visibility = Visibility.Hidden; }
 
-            if (StringHelper.ToInt(txtLimitDays.Text) == 0)
+            if (txtLimitDays.Text.ToInt() == 0)
             {
                tblLimitDaysWarning.Visibility = Visibility.Visible;
                txtLimitDays.Focus();
@@ -42,7 +41,7 @@ namespace LibraryManager.EntityFramework.ViewModel
             BookCategoryDTO newBookCategory = new BookCategoryDTO()
             {
                Name = txtName.Text,
-               LimitDays = StringHelper.ToInt(txtLimitDays.Text),
+               LimitDays = txtLimitDays.Text.ToInt(),
                Status = true
             };
 

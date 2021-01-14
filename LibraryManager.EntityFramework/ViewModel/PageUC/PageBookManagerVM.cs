@@ -2,10 +2,7 @@
 using LibraryManager.EntityFramework.View;
 using LibraryManager.MyUserControl.MyBox;
 using LibraryManager.Utility;
-using LibraryManager.Utility.Enums;
-using LibraryManager.Utility.Interfaces;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
@@ -45,9 +42,9 @@ namespace LibraryManager.EntityFramework.ViewModel
 
       public PageBookManagerVM(LibrarianDTO librarian)
       {
-         ListBookCategory = BookCategoryDAL.Instance.GetList(StatusFillter.Active);
+         ListBookCategory = BookCategoryDAL.Instance.GetList(EStatusFillter.Active);
          ListBookCategory.Add(new BookCategoryDTO() { Id = 0, Name = "Tất cả chuyên mục" });
-         ListPublisher = PublisherDAL.Instance.GetList(StatusFillter.Active);
+         ListPublisher = PublisherDAL.Instance.GetList(EStatusFillter.Active);
          ListPublisher.Add(new PublisherDTO() { Id = 0, Name = "Tất cả NXB" });
          ReloadList();
 
@@ -172,7 +169,7 @@ namespace LibraryManager.EntityFramework.ViewModel
               catch (Exception) { }
            });
 
-         ExportToExcelCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+         ExportToExcelCommand = new RelayCommand<object>((p) => true, (p) =>
          {
             string filePath = DialogUtils.ShowSaveFileDialog("Xuất danh đầu sách trong thư viện", "Excel | *.xlsx | Excel 2003 | *.xls");
             if (string.IsNullOrEmpty(filePath)) { return; }

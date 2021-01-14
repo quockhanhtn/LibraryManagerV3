@@ -1,16 +1,10 @@
-﻿namespace LibraryManager.EntityFramework.Model
+﻿using System.Linq;
+
+namespace LibraryManager.EntityFramework.Model
 {
    public class BookDTO : Book
    {
-      public string AuthorNames
-      {
-         get
-         {
-            string authorNames = "";
-            foreach (var item in Authors) { authorNames += item.NickName + ", "; }
-            return authorNames.Length > 2 ? authorNames.Substring(0, authorNames.Length - 2) : "";
-         }
-      }
+      public string AuthorNames { get => string.Join(", ", Authors.Select(x => x.NickName).ToArray()); }
 
       public BookDTO() : base()
       {
