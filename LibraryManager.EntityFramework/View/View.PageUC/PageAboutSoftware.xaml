@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="LibraryManager.EntityFramework.View.PageAboutSoftware"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LibraryManager.EntityFramework.View"
+
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:uc="clr-namespace:LibraryManager.MyUserControl;assembly=LibraryManager.MyUserControl"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
+             mc:Ignorable="d" x:Name="pageLibrarianManager" DataContext="{StaticResource PageAboutSoftwareVM}"
+             d:DesignHeight="734" d:DesignWidth="1300" Background="#fafafa">
+   <Grid>
+      <Grid.Resources>
+         <Style TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlock}" />
+      </Grid.Resources>
+      <materialDesign:Card Grid.Column="0" Style="{StaticResource MaterialDesignPageCard}" Margin="5">
+         <Grid>
+            <Grid.RowDefinitions>
+               <RowDefinition Height="auto" />
+               <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+               <TextBlock Text="PHẦN MỀM QUẢN LÝ THƯ VIỆN" FontSize="30" Margin="0 30 0 0" />
+               <TextBlock HorizontalAlignment="Center" Text="Library manager" Margin="0" />
+               <TextBlock FontSize="18" Text="© 2021 HKNP Team" Margin="0 0 0 20" />
+               <Grid>
+                  <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="3*" />
+                     <ColumnDefinition Width="2*" />
+                     <ColumnDefinition Width="2*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                     <RowDefinition></RowDefinition>
+                     <RowDefinition></RowDefinition>
+                     <RowDefinition></RowDefinition>
+                     <RowDefinition></RowDefinition>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Column="1" Grid.Row="0" FontSize="18" HorizontalAlignment="Left" Text="- Hồ Huy Hoàng" Margin="0" />
+                  <TextBlock Grid.Column="1" Grid.Row="1" FontSize="18" HorizontalAlignment="Left" Text="- Lâm Quốc Khánh" Margin="0" />
+                  <TextBlock Grid.Column="1" Grid.Row="2" FontSize="18" HorizontalAlignment="Left" Text="- Trần Quốc Nam" Margin="0" />
+                  <TextBlock Grid.Column="1" Grid.Row="3" FontSize="18" HorizontalAlignment="Left" Text="- Nguyễn Trần Phúc" Margin="0" />
+               </Grid>
+            </StackPanel>
+         </Grid>
+      </materialDesign:Card>
+      <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="mySnackbar" />
+   </Grid>
+</UserControl>

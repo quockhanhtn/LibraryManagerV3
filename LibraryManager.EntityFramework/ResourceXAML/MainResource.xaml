@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:LibraryManager.EntityFramework.ViewModel">
+
+   <viewmodel:LoginWindowViewModel x:Key="LoginWindowVM" />
+   <viewmodel:MainWindowViewModel x:Key="MainWindowVM" />
+
+   <viewmodel:PageBookCategoryManagerVM x:Key="PageBookCategoryManagerVM" />
+   <viewmodel:PageLibrarianManagerVM x:Key="PageLibrarianManagerVM" />
+   <viewmodel:PageMemberManagerVM x:Key="PageMemberManagerVM" />
+   <viewmodel:PageAuthorManagerVM x:Key="PageAuthorManagerVM" />
+   <viewmodel:PagePublisherManagerVM x:Key="PagePublisherManagerVM" />
+   <viewmodel:PageStatisticVM x:Key="PageStatisticVM" />
+   <viewmodel:PageFindBookVM x:Key="PageFindBookVM" />
+   <viewmodel:PageAboutSoftwareVM x:Key="PageAboutSoftwareVM" />
+
+   <viewmodel:AddBookCategoryWindowVM x:Key="AddBookCategoryWindowVM" />
+   <viewmodel:AddLibrarianWindowVM x:Key="AddLibrarianWindowVM" />
+   <viewmodel:AddMemberWindowVM x:Key="AddMemberWindowVM" />
+   <viewmodel:AddPublisherWindowVM x:Key="AddPublisherWindowVM" />
+   <viewmodel:AddAuthorWindowVM x:Key="AddAuthorWindowVM" />
+</ResourceDictionary>
